@@ -151,6 +151,51 @@ This starts the Vite dev server on `http://localhost:3000`, which proxies API re
 
 ---
 
+## Cloud Deployment
+
+Deploy ZTNM to the cloud for demo/portfolio purposes. Note that **network scanning requires local network access**, so cloud deployments will show the UI but won't discover real devices on your local network.
+
+### Deploy to Render (Free Tier)
+
+#### One-Click Deploy (Blueprint)
+
+1. Fork or push this repo to your GitHub account
+2. Go to [Render Dashboard](https://dashboard.render.com)
+3. Click **New → Blueprint**
+4. Connect your repository and select `Zero-trust_network_map`
+5. Render will automatically detect the `render.yaml` configuration
+6. Click **Apply** — deployment starts automatically
+
+#### Manual Deploy (via Docker)
+
+1. Push the repo to GitHub
+2. On Render Dashboard, click **New → Web Service**
+3. Connect your repository
+4. Set:
+   - **Name**: `zero-trust-network-map`
+   - **Runtime**: `Docker`
+   - **Branch**: `main`
+   - **Plan**: **Free**
+5. Click **Create Web Service**
+
+Render will build the Docker image and deploy. Once live, your app will be at `https://zero-trust-network-map.onrender.com`.
+
+> **Note:** The free tier sleeps after 15 minutes of inactivity. The first request after idle will take ~30 seconds to wake up.
+
+### Docker (Any Hosting)
+
+```bash
+# Build the Docker image
+docker build -t ztnm .
+
+# Run the container
+docker run -p 8000:8000 ztnm
+```
+
+Then visit `http://localhost:8000`.
+
+---
+
 ## API Reference
 
 ### REST Endpoints

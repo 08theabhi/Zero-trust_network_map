@@ -1,0 +1,19 @@
+# Render Blueprints — One-click deploy configuration
+# Documentation: https://render.com/docs/blueprint-spec
+
+services:
+  # Web service running the FastAPI backend + serving React frontend
+  - type: web
+    name: zero-trust-network-map
+    runtime: docker
+    repo: https://github.com/08theabhi/Zero-trust_network_map
+    branch: main
+    dockerfilePath: ./Dockerfile
+    plan: free
+    autoDeploy: true
+    healthCheckPath: /api/health
+    envVars:
+      - key: HOST
+        value: "0.0.0.0"
+      - key: PORT
+        value: "8000"
